@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: currency-exchange
+
+  devtools:
+    livereload:
+      port: 36601
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+server:
+  port: 8000
+
+---
+spring:
+  config:
+    activate:
+      on-profile: port8001
+
+  devtools:
+    livereload:
+      port: 36602
+
+server:
+  port: 8001
+
+---
+spring:
+  config:
+    activate:
+      on-profile: port8002
+
+  devtools:
+    livereload:
+      port: 36603
+
+server:
+  port: 8002
