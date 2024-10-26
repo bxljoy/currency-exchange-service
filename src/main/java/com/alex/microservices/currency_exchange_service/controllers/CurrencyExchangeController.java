@@ -30,6 +30,8 @@ public class CurrencyExchangeController {
             @PathVariable String to) {
         Optional<CurrencyExchange> exchangeValue = currencyExchangeService.retrieveExchangeValue(from, to);
         return exchangeValue.map(currencyExchange -> {
+            String port = environment.getProperty("local.server.port");
+            currencyExchange.setEnvironment(port);
             return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
         }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

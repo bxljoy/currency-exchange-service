@@ -10,19 +10,6 @@ Response Structure
    "environment":"8000 instance-id"
 }
 
-
-currency-conversion URL
-http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
-
-Response Structure
-{
-   "id":10001,
-   "from":"USD",
-   "to":"INR",
-   "conversionMultiple":65.00,
-   "environment":"8100 instance-id"
-}
-
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8001 --spring.devtools.livereload.port=36602"
 
 mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8002 --spring.devtools.livereload.port=36603"
