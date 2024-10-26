@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.alex.microservices.currency_exchange_service.domain.CurrencyExchange;
 import com.alex.microservices.currency_exchange_service.utils.DataUtils;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
