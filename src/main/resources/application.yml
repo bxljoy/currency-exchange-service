@@ -30,6 +30,38 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 30 # Heartbeat interval
     leaseExpirationDurationInSeconds: 90 # Timeout before marking the instance as down
+
+resilience4j.retry:
+  instances:
+    sample-api:
+      maxAttempts: 3
+      waitDuration: 10s
+      enableExponentialBackoff: true
+      exponentialBackoffMultiplier: 2
+      retryExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+
+resilience4j.circuitbreaker:
+  instances:
+    backendA:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 50s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+
+resilience4j.ratelimiter:
+  instances:
+    backendA:
+      limitForPeriod: 10
+      limitRefreshPeriod: 60s
+      timeoutDuration: 3s
+      registerHealthIndicator: true
+      eventConsumerBufferSize: 100
 ---
 spring:
   config:
